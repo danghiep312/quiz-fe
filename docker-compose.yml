@@ -1,0 +1,16 @@
+version: '3'
+
+volumes:
+  mongo-data:
+
+networks:
+  mongodb-network:
+    name: mongodb_network
+
+services:
+  fe:
+    image: app-quiz
+    build: .
+    container_name: app
+    hostname: app
+    restart: unless-stopped
