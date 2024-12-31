@@ -27,6 +27,7 @@ import LatexPreview from "@/widgets/draws/latex-preview";
 import DrawingBoard from "@/widgets/draws/drawing-board";
 import FileUploadComponent from "@/widgets/draws/file-upload-with-preview";
 import { convertFileToBase64, getLatexByApi } from "@/helpers";
+import MathContent from "@/widgets/draws/math-content";
 
 export const ContestDetail = () => {
   const params = useParams();
@@ -213,7 +214,8 @@ export const ContestDetail = () => {
                     <div className="mt-4 p-5">
                       <h1>
                         <strong>Câu {selectQuestionId}. </strong>
-                        {selectQuestion.question}
+                        {/* {selectQuestion.question} */}
+                        <MathContent content={selectQuestion.question}/>
                       </h1>
                       {selectQuestion.questionType ===
                         QuestionsType.MUTIPLE_CHOICE && (
@@ -254,7 +256,8 @@ export const ContestDetail = () => {
                                         color="blue-gray"
                                         className="font-medium"
                                       >
-                                        {answer.content}
+                                        {/* {answer.content} */}
+                                        <MathContent content={answer.content}/>
                                       </Typography>
                                     </label>
                                   </ListItem>

@@ -16,6 +16,7 @@ import { ALPHABET, QuestionsType } from "./question.constant";
 import { QuestionCreateModal } from "./questionCreateModal";
 import { QuestionUpdateModal } from "./questionUpdateModal";
 import LatexPreview from "@/widgets/draws/latex-preview";
+import MathContent from "@/widgets/draws/math-content";
 
 
 export const Question = () => {
@@ -117,7 +118,7 @@ export const Question = () => {
                           </td>
                           <td className={className + " max-w-[300px]"}>
                             <Typography className="text-justify text-sm  text-blue-gray-600">
-                              {question}
+                              <MathContent content={question}></MathContent>
                             </Typography>
                           </td>
                           <td className={className}>
@@ -190,10 +191,11 @@ export const Question = () => {
                                           "mt-1 text-left text-xs text-white"
                                         }
                                       >
-                                        <span className="font-semibold">
-                                          {ALPHABET[index]}.
-                                        </span>{" "}
-                                        {answer.content}
+                                        <span className="font-semibold" style={{textTransform: "none"}}>  
+                                          {ALPHABET[index]}. <MathContent content={answer.content}/>
+                                        
+                                        </span>
+                                        {/* {answer.content} */}
                                       </Typography>
                                     </Button>
                                   </Tooltip>
@@ -201,18 +203,6 @@ export const Question = () => {
                               ))
                             ) : (
                               <div className="latex-answer">
-                                {/* <Typography className="text-sm text-blue-gray-600">
-                                  <span
-                                    dangerouslySetInnerHTML={{
-                                      __html: answerText, // Dữ liệu LaTeX được truyền từ backend vào answerText
-                                    }}
-                                  />
-                                </Typography> */}
-                                {/* <MathJaxContext>
-                                  <div className="latex-answer">
-                                    <MathJax inline>{answerText}</MathJax>
-                                  </div>
-                                </MathJaxContext> */}
                                 <LatexPreview latexString={answerText}/>
                               </div>
                             )}
