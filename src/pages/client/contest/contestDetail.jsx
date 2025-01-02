@@ -49,20 +49,20 @@ export const ContestDetail = () => {
   const [yourAnswers, setYourAnswer] = useState({
     contestId: params.contestId,
     answers: {},
-    answerText: "",
+    answersText: {},
   });
 
   const onImageUploaded = async (file) => {
     let base64image = await convertFileToBase64(file);
     let latexResult = await getLatexByApi(base64image);
-    
-    yourAnswers.answerText = latexResult
+
+    yourAnswers.answersText[selectQuestion.id] = latexResult;
   };
 
   const getLatexString = async (imageData) => {
     let latexResult = await getLatexByApi(imageData);
 
-    yourAnswers.answerText = latexResult
+    yourAnswers.answersText[selectQuestion.id] = latexResult;
   };
 
   const handleSubmitContest = () => {
@@ -132,7 +132,15 @@ export const ContestDetail = () => {
         }
       );
     }
-  }, [selectQuestion]);
+
+    if (
+      selectQuestion &&
+      yourAnswers.answersText &&
+      !yourAnswers.answersText[selectQuestion.id]
+    ) {
+      yourAnswers.answersText[selectQuestion.id] = "";
+    }
+  }, [selectQuestion, yourAnswers]);
 
   return (
     !isReadExamLoading && (
@@ -215,7 +223,7 @@ export const ContestDetail = () => {
                       <h1>
                         <strong>Câu {selectQuestionId}. </strong>
                         {/* {selectQuestion.question} */}
-                        <MathContent content={selectQuestion.question}/>
+                        <MathContent content={selectQuestion.question} />
                       </h1>
                       {selectQuestion.questionType ===
                         QuestionsType.MUTIPLE_CHOICE && (
@@ -257,7 +265,7 @@ export const ContestDetail = () => {
                                         className="font-medium"
                                       >
                                         {/* {answer.content} */}
-                                        <MathContent content={answer.content}/>
+                                        <MathContent content={answer.content} />
                                       </Typography>
                                     </label>
                                   </ListItem>
@@ -270,7 +278,11 @@ export const ContestDetail = () => {
 
                       {selectQuestion.questionType === QuestionsType.MANUAL && (
                         <>
-                          <LatexPreview latexString={yourAnswers.answerText} />
+                          <LatexPreview
+                            latexString={
+                              yourAnswers.answersText[selectQuestion.id]
+                            }
+                          />
                           <DrawingBoard previewImage={getLatexString} />
                           <FileUploadComponent
                             onImageChange={onImageUploaded}
