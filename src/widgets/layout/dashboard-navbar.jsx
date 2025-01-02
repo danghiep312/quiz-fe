@@ -81,9 +81,9 @@ export function DashboardNavbar() {
           </Typography>
         </div>
         <div className="flex items-center">
-          <div className="mr-auto md:mr-4 md:w-56">
+          {/* <div className="mr-auto md:mr-4 md:w-56">
             <Input label="Tìm kiếm" />
-          </div>
+          </div> */}
           <IconButton
             variant="text"
             color="blue-gray"

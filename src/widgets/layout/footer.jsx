@@ -7,7 +7,7 @@ export function Footer() {
     <footer className="py-2">
       <div className="flex w-full flex-wrap items-center justify-center gap-6 px-2 md:justify-between">
         <Typography variant="small" className="font-normal text-inherit">
-          &copy; Copyright {year}. All rights reserved.
+          {/* &copy; Copyright {year}. All rights reserved. */}
         </Typography>
       </div>
     </footer>

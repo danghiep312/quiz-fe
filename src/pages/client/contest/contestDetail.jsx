@@ -282,8 +282,7 @@ export const ContestDetail = () => {
                         <div className="mt-5">
                           <CollapseComponent
                             name="Explanation"
-                            content="Kinh tế thị trường định hướng Xã
-             hội chủ nghĩa là nền kinh tế vận hành theo cơ chế nào?"
+                            content={selectQuestion.explaination}
                           />
                         </div>
                       )}

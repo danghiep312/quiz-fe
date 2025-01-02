@@ -90,7 +90,7 @@ export const Contest = () => {
                             Vào thi
                           </Button>
                         </Link>
-                        <div>
+                        {/* <div>
                           {projectsData[0].members.map(({ img, name }, key) => (
                             <Tooltip key={name} content={name}>
                               <Avatar
@@ -104,7 +104,7 @@ export const Contest = () => {
                               />
                             </Tooltip>
                           ))}
-                        </div>
+                        </div> */}
                       </CardFooter>
                     </Card>
                   )
